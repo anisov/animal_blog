@@ -1,0 +1,45 @@
+<div class="comments">
+    <h3 class="title">Комментарии (<span id="comment-total">{{ comments.count }}</span>)</h3>
+    <div id="comments-wrapper">
+        {% for comment in comments %}
+        {% if comment.approved_comment %}
+            <ol class="comment-list" id="comments"><p>Имя:{{ comment.user_name }}</p>
+                <p>Комментарий:{{ comment.content }}</p>
+                <hr>
+            </ol>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div id="comments-tpanel">
+        <div id="tpanel-refresh"></div>
+        <div id="tpanel-new"></div>
+    </div>
+</div><h3 id="comments">Оставьте свой комментарий</h3>
+<h4 id="comment-new-link">
+    <p>Написать комментарий</p>
+</h4>
+<div id="comment-form-placeholder">
+    <form id="comment-form" action="" method="post" class="well">
+        {% csrf_token %}
+        <div class="form-group form-group-inline">
+            {{ form.user_name }}
+            <span class="error"></span>
+        </div>
+
+        <div class="form-group form-group-inline">
+            {{ form.email }}
+            <span class="error">{% for error in form.errors %}Извините, у вас ошибка в :{{ error }}{% endfor %}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="comment-editor"></label>
+            {{ form.content }}
+        </div>
+        {{ form.honeypot }}
+        <div class="form-actions">
+            <input type="submit" class="btn btn-primary submit" value="Написать">
+            <span class="time"></span>
+        </div>
+    </form>
+</div>

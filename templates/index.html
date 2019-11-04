@@ -1,0 +1,89 @@
+{% extends 'base.html'%}
+{% load hitcount_tags %}
+{% load l10n %}
+{% block title %}
+    <title>Блог | Продажа и покупка питомцев</title>
+    <meta name="description" content="">
+{% endblock %}
+{% block post %}
+<div id="panel">
+    <main class="blog_main">
+        <div class="wrap inner">
+            <h1>Блог</h1>
+            <div class="blog_main_items_wrap">
+                <ul class="blog_main_items">
+                    {% for ob in object_list %}
+                    <li class="blog_main_item">
+                        <div class="blog_main_item_content">
+                            <a href="{%url 'blog_news' ob.id%}" class="blog_main_item_title">
+                                {% autoescape off%}
+                                    {{ ob.title }}
+                                {% endautoescape %}
+                            </a>
+                            <a href="{%url 'blog_news' ob.id%}"><img src="{{ ob.img.url }}" alt="картинка"></a>
+                            <div class="blog_main_item_status">
+                                <div class="blog_main_item_date">{{ ob.posted|date:'j.m.Y H:i' }}</div>
+                                <div class="views">{% get_hit_count for ob %}</div>
+                            </div>
+                            <div class="blog_main_item_tags">
+                                {% for name in ob.tags.names %}
+                                    <a href="{% url 'blog' %}?tag={{ name }}">{{ name }}</a>
+                                {% endfor %}
+                            </div>
+                            <div class="blog_main_item_text">
+                                {% autoescape off %}
+                                    {{ ob.short_info }}
+                                {% endautoescape %}
+                            </div>
+                        </div>
+                        <a href="{% url 'blog_news' ob.slug %}" class="more btn btn-green">Читать далее</a>
+                    </li>
+                    {% endfor %}
+                    <div class="clear medium-visible"></div>
+                    <div class="clear large-visible"></div>
+                </ul>
+            </div>
+            <div class="clear"></div>
+            <div class="text-center">
+                {% if is_paginated %}
+                {% autoescape off %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li>
+                        <a href="?{{ sort_by_param }}page=1">
+                            <span>Первая</span>
+                        </a>
+                    </li>
+                    {% for num in page_obj.range_before %}
+                        <li>
+                            <a href="{% if tag %}?tag={{ tag }}{% endif %}{%if tag %}&{% else %}?{% endif %}
+                            page={{ num }}">{{ num }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    {% endif %}
+                    <li class="active">
+                        <a href="#">{{ page_obj.number }}</a>
+                    </li>
+                    {% if page_obj.has_next %}
+                    {% for num in page_obj.range_after %}
+                        <li>
+                            <a href="{% if tag %}?tag={{ tag }}{% endif %}{% if tag %}&{% else %}?{% endif %}
+                                page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% endfor %}
+                    <li>
+                        <a href="?{{ sort_by_param }}page=last">
+                            <span>Последняя</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endautoescape %}
+                {% endif %}
+                </ul>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

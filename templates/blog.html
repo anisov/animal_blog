@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% block title %}
+    <title>{{ object.title }}</title>
+    <meta name="description" content="{{object.short_info}}">
+{% endblock %}
+{% block post %}
+<div id="panel">
+    <main class="blog_inner">
+        <div class="wrap inner">
+            <h1>{{ object.title }}</h1>
+            <div class="blog_inner_status">
+                <div class="blog_inner_time">{{ object.posted|date:'j.m.Y H:i' }}</div>
+                <div class="blog_inner_read_views">{{ hitcount.total_hits }}</div>
+                <div class="blog_inner_comments"><a href="#comments">Написать комментарий</a></div>
+            </div>
+            <div class="blog_inner_tags">
+                {% for name in object.tags.names %}
+                    <a href="{%url 'blog'%}?tag={{name}}">{{ name }}</a>
+                {% endfor %}
+            </div>
+            <div class="blog_inner_content">
+                <div class="blog_inner_content_img_wrap text-center"><img src="{{ object.img.url }}" alt="картинка"/>
+                </div>
+                {% autoescape off %}{{ object.full_info }}{% endautoescape %}
+                {% include 'comments/form.html' %}
+                <div class="clear"></div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

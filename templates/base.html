@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="ru">
+<head>
+    <base href="" />
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    {% block title %}
+    {% endblock %}
+    <meta name="yandex-verification" content="1def32bf4d40d4fb" />
+    <base href="">
+    <link rel="shortcut icon" href="{% static '/img/favicon.ico'%}" type="image/x-icon" />
+    <link rel="icon" href="{% static '/img/favicon.ico'%}"type="image/x-icon" />
+    <link rel="stylesheet" href="{% static '/css/lib.css'%}">
+    <link rel="stylesheet" href="{% static '/css/style.css'%}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/lib.js'%}"></script>
+    <script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/slideout.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/app.js'%}"></script>
+    <link rel="stylesheet" href="{% static '/css/responsive.css'%}">
+    <link rel="canonical" href="index.html"/>
+</head>
+<body>
+    <nav id="menu">
+      <header>
+        <div class="button_wrap" id="close_hamb">
+            <div class="close_but"></div>
+        </div>
+        <h2>Меню</h2>
+    </header>
+</nav>
+<div id="wrapper-main">
+    <header class="header static">
+        <div class="hln_static">
+            <div class="wrap">
+                <div class="logo">
+                    <a href="/"><img src="{% static 'img/logo.png' %}"></a>
+                </div>
+                <div class="hamburger_wrap medium-visible" id="hamburger" >
+                    <div class="hamburger">
+                        <div class="hamburger_inn"></div>
+                    </div>
+                </div>
+
+                <div class="contacts">
+                    <div class="phone"><a href="tel:+7 (499) 424-03-65">8 (495) 133-71-84</a></div>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+    </header>
+	{% block post %}
+
+	{% endblock %}
+    <footer class="footer_inner">
+        <div class="wrap">
+            <div class="footer_inner_left_side">
+                <div class="creaters">“Animal-town”
+                    <br>Продажа и подбор питомцев
+                    <br></div>
+                    <div class="copyrights">2011-2017 <span class="copy_sign">&#9400;</span>Animal-town.ru</div>
+                </div>
+                <div class="footer_inner_middle_side">
+
+                </div>
+                <div class="footer_inner_right_side">
+                    <a href="tel:+74994240365" class="footer_phone">8 (495) 133-71-84</a>
+                    <div class="adress">
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter46151436 = new Ya.Metrika({
+                    id:46151436,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/46151436" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>
+</body>
+</html>
